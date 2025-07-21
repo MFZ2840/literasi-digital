@@ -1,4 +1,92 @@
-@import "tailwindcss";
+/* styles/globals.css (Konfigurasi Tailwind CSS v3.x) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Optional: Styling tambahan untuk memastikan .ck-content terlihat baik --- */
+/* Jika Anda menggunakan plugin Tailwind Typography (prose), ini mungkin tidak terlalu diperlukan.
+   Tapi, ini bisa jadi fallback yang bagus atau untuk kustomisasi lebih lanjut. */
+.ck-content {
+  /* Pastikan elemen-elemen HTML standar ter-render dengan baik */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.2; /* Menjaga jarak antar baris di judul */
+  }
+  p {
+    margin-bottom: 1em;
+  }
+  /* PERBAIKAN: Pastikan selector ul, ol berada di dalam .ck-content */
+  ul, ol {
+    list-style-position: outside; /* Ini sudah benar untuk daftar rapi */
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+  }
+  blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #555;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Agar tidak ada ruang putih di bawah gambar */
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem; /* Sudut membulat pada gambar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sedikit bayangan */
+  }
+  pre {
+    background-color: #f4f4f4;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto; /* Mengatasi overflow untuk kode panjang */
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.875rem;
+  }
+  code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    background-color: #eee;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  a {
+    color: #3b82f6; /* Warna biru untuk link */
+    text-decoration: underline;
+  }
+  a:hover {
+    color: #2563eb; /* Warna biru lebih gelap saat hover */
+  }
+} /* <--- TANDA INI YANG HILANG DI SEBELUMNYA. INI MENUTUP .ck-content */
+
+
+/* --- Modifikasi untuk Tinggi & Scrolling CKEditor di Admin Panel --- */
+/* Target elemen yang dapat diedit di CKEditor. Ini biasanya adalah div tempat konten berada. */
+/* Properti max-height akan membatasi tingginya. */
+/* overflow-y: auto akan menambahkan scrollbar vertikal jika konten melebihi max-height. */
+.ck-editor__editable {
+    height: 280px; /* <--- SESUAIKAN NILAI INI. Contoh: 400px atau 60vh. */
+                      /* Anda bisa mengukur tinggi ArticleListSection.tsx dengan dev tools. */
+    overflow-y: auto;
+    /* Opsional: Tambahkan padding untuk tampilan yang lebih baik saat di-scroll */
+    padding: 1em;
+}
+
+/* --- AKHIR CSS CKEDITOR --- */
+
 
 :root {
   --background: #ffffff;

@@ -1,0 +1,38 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String?
+  role      String    @default("admin")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  articles  Article[] // Relasi balik ke Article
+}
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   @db.Text
+  seriesSlug  String   // <--- Disesuaikan dengan migrasi: TIDAK NULL
+  order       Int      @default(1) // <--- Disesuaikan dengan migrasi: TIDAK NULL, DEFAULT 1
+  image       String?  // <--- Disesuaikan dengan migrasi: Opsional (bisa null)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  views       Int      @default(0) // <<< TAMBAHAN BARU: Kolom untuk melacak jumlah tayangan
+
+  // Relasi ke User
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int      // <--- Pastikan ini Int agar cocok dengan User.id
+                       // Ini yang harus ditambahkan ke DB oleh migrasi baru
+  @@unique([seriesSlug, order])
+}

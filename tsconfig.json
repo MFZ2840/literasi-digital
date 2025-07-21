@@ -13,10 +13,44 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".", // Pastikan ini ada dan diatur ke "."
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./*"],
+      // --- TAMBAHKAN BAGIAN DI BAWAH INI ---
+      "@ckeditor/ckeditor5-watchdog": [
+        "node_modules/@ckeditor/ckeditor5-watchdog"
+      ],
+      "@ckeditor/ckeditor5-watchdog/*": [
+        "node_modules/@ckeditor/ckeditor5-watchdog/*"
+      ],
+      "@ckeditor/ckeditor5-core": [
+        "node_modules/@ckeditor/ckeditor5-core"
+      ],
+      "@ckeditor/ckeditor5-core/*": [
+        "node_modules/@ckeditor/ckeditor5-core/*"
+      ],
+      "@ckeditor/ckeditor5-engine": [
+        "node_modules/@ckeditor/ckeditor5-engine"
+      ],
+      "@ckeditor/ckeditor5-engine/*": [
+        "node_modules/@ckeditor/ckeditor5-engine/*"
+      ],
+      "@ckeditor/ckeditor5-utils": [
+        "node_modules/@ckeditor/ckeditor5-utils"
+      ],
+      "@ckeditor/ckeditor5-utils/*": [
+        "node_modules/@ckeditor/ckeditor5-utils/*"
+      ]
+      // --- AKHIR TAMBAHAN ---
+    },
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/db.ts",
+    "types/**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
