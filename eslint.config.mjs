@@ -20,6 +20,7 @@ const eslintConfig = [
       'react/no-unescaped-entities': 'off', // Menambahkan aturan yang dinonaktifkan
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      'prefer-const': 'off',
       '@next/next/no-page-custom-font': 'off', // Menambahkan aturan yang dinonaktifkan
     },
   }),
