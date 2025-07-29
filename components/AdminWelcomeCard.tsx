@@ -9,6 +9,20 @@ interface AdminWelcomeCardProps {
 export default function AdminWelcomeCard({ articlesCount }: AdminWelcomeCardProps) {
   const { data: session, status } = useSession();
 
+  const displayName = React.useMemo(() => {
+    if (status !== 'authenticated' || !session) {
+      return 'Admin';
+    }
+    
+    if (session.user?.name) {
+      return session.user.name;
+    }
+    if (session.user?.email) {
+      return session.user.email.split('@')[0];
+    }
+    return 'Admin';
+  }, [session, status]);
+
   // Show loading state while session is loading or unauthenticated
   if (status === 'loading' || status === 'unauthenticated') {
     return (
@@ -24,21 +38,6 @@ export default function AdminWelcomeCard({ articlesCount }: AdminWelcomeCardProp
       </div>
     );
   }
-
-  // Get the display name with robust handling using useMemo
-  const displayName = React.useMemo(() => {
-    if (status !== 'authenticated' || !session) {
-      return 'Admin';
-    }
-    
-    if (session.user?.name) {
-      return session.user.name;
-    }
-    if (session.user?.email) {
-      return session.user.email.split('@')[0];
-    }
-    return 'Admin';
-  }, [session, status]);
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 rounded-3xl shadow-2xl p-8 mb-8 text-white">
