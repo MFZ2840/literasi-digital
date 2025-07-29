@@ -9,9 +9,7 @@ const prisma = new PrismaClient();
 async function hashExistingPasswords() {
   // Daftar email pengguna yang passwordnya perlu di-hash
   const userEmailsToUpdate = [
-    'admin1@example.com',
-    'admin2@example.com',
-    'admin3@example.com',
+    'admin1@example.com'
   ];
 
   // Password plain text saat ini untuk ketiga akun tersebut (berdasarkan screenshot Anda)

@@ -8,10 +8,10 @@ const prisma = new PrismaClient();
 
 async function createUser() {
   // Detail akun baru yang ingin Anda buat
-  const email = 'admin4@example.com';
-  const plainPassword = 'password123'; // Password plain text yang akan di-hash
-  const name = 'Admin 4';
-  const role = 'admin'; // Sesuaikan role jika Anda memiliki peran lain
+  const email = '';
+  const plainPassword = ''; // Password plain text yang akan di-hash
+  const name = '';
+  const role = ''; // Sesuaikan role jika Anda memiliki peran lain
 
   try {
     // 1. Hash password sebelum menyimpannya ke database
